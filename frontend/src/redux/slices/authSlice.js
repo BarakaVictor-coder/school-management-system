@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
                 },
             };
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/auth/login`,
+                `${import.meta.env.VITE_API_URL}api/auth/login`,
                 { email, password },
                 config
             );
@@ -45,7 +45,7 @@ export const register = createAsyncThunk(
                 },
             };
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/auth/register`,
+                `${import.meta.env.VITE_API_URL}api/auth/register`,
                 { name, email, password, role },
                 config
             );
