@@ -54,6 +54,10 @@ app.use(limiter);
 
 // Body Parser Middleware
 app.use(express.json());
+app.use(cors({
+    origin:"schoolmanagementsystemfrontend.vercel.app",
+    credentials: true
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
