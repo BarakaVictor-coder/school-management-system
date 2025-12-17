@@ -39,8 +39,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// ✅ HANDLE PREFLIGHT REQUESTS
-app.options('*', cors());
 
 /* =========================
    Security & Parsers
