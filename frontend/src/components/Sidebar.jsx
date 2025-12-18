@@ -25,7 +25,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     const fetchPendingCount = async () => {
         try {
             if (userInfo?.role === 'Admin' && userInfo?.token) {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/approvals/count`, {
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/approvals/count`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 setPendingCount(data.count || 0);
