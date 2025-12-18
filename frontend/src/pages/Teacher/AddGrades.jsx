@@ -43,7 +43,7 @@ const AddGrades = () => {
     const fetchStudents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/students`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/students`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setStudents(data);
@@ -57,7 +57,7 @@ const AddGrades = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             // Fetch subjects for this specific class
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/subjects?classId=${classId}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects?classId=${classId}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClassSubjects(data);
@@ -112,7 +112,7 @@ const AddGrades = () => {
 
             // Send requests concurrently
             await Promise.all(gradesToSubmit.map(gradeData =>
-                axios.post(`${import.meta.env.VITE_API_URL}/grades`, gradeData, {
+                axios.post(`${import.meta.env.VITE_API_URL}/api/grades`, gradeData, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 })
             ));

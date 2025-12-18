@@ -18,7 +18,7 @@ const MyAttendance = () => {
 
     const fetchAttendance = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/attendance/student/${userInfo._id}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/attendance/student/${userInfo._id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setAttendance(data);

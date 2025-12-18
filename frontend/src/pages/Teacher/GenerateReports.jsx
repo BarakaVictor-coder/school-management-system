@@ -28,7 +28,7 @@ const GenerateReports = () => {
     const fetchStudents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/students`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/students`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setStudents(data);

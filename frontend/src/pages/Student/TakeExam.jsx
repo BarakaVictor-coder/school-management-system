@@ -36,7 +36,7 @@ const TakeExam = () => {
             // FIX: Backend should NOT send `correctOption` for student view if possible, or I act ignorant for V1 MVP speed.
             // I will implement "Student View" projection in backend later. For now, proceeding with V1. A "secure" backend route `getExamForStudent` would project -correctOption.
 
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/exams/${id}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/exams/${id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setExam(data);
@@ -65,7 +65,7 @@ const TakeExam = () => {
             const answersArray = exam.questions.map((_, idx) => answers[idx] !== undefined ? answers[idx] : -1);
 
             await axios.post(
-                `${import.meta.env.VITE_API_URL}/exams/${id}/submit`,
+                `${import.meta.env.VITE_API_URL}/api/exams/${id}/submit`,
                 { answers: answersArray },
                 { headers: { Authorization: `Bearer ${userInfo.token}` } }
             );

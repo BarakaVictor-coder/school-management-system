@@ -22,7 +22,7 @@ const PaymentSuccess = () => {
             try {
                 const userInfo = JSON.parse(localStorage.getItem('userInfo'));
                 await axios.post(
-                    `${import.meta.env.VITE_API_URL}/fees/payment-success`,
+                    `${import.meta.env.VITE_API_URL}/api/fees/payment-success`,
                     { session_id: sessionId, feeId },
                     {
                         headers: { Authorization: `Bearer ${userInfo.token}` }

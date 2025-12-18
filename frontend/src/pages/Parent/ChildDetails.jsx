@@ -27,11 +27,11 @@ const ChildDetails = () => {
 
             // Fetch all data
             const [childrenRes, gradesRes, attendanceRes, assignmentsRes, resultsRes] = await Promise.all([
-                axios.get(`${import.meta.env.VITE_API_URL}/parents/children`, { headers }),
-                axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${id}/grades`, { headers }),
-                axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${id}/attendance`, { headers }),
-                axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${id}/assignments`, { headers }),
-                axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${id}/results`, { headers })
+                axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children`, { headers }),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${id}/grades`, { headers }),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${id}/attendance`, { headers }),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${id}/assignments`, { headers }),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${id}/results`, { headers })
             ]);
 
             const currentChild = childrenRes.data.find(c => c._id === id);

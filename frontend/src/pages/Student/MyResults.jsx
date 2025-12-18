@@ -16,7 +16,7 @@ const MyResults = () => {
 
     const fetchResults = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/results/student/${userInfo._id}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/results/student/${userInfo._id}`);
             setResults(data);
         } catch (error) {
             console.error(error);

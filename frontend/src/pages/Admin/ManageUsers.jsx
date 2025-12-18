@@ -34,7 +34,7 @@ const ManageUsers = () => {
     const fetchUsers = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/approvals/users`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/approvals/users`, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
@@ -58,7 +58,7 @@ const ManageUsers = () => {
     const fetchStudents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/approvals/users`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/approvals/users`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setStudents(data.filter(u => u.role === 'Student'));
@@ -70,7 +70,7 @@ const ManageUsers = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -82,7 +82,7 @@ const ManageUsers = () => {
     const fetchSubjects = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setSubjects(data);
@@ -108,7 +108,7 @@ const ManageUsers = () => {
         setLoading(true);
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.put(`${import.meta.env.VITE_API_URL}/approvals/${selectedUser._id}/update`, {
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/approvals/${selectedUser._id}/update`, {
                 role: editRole,
                 studentClass: editRole === 'Student' ? editClass : null,
                 rollNumber: editRole === 'Student' ? editRollNumber : null,
@@ -135,7 +135,7 @@ const ManageUsers = () => {
 
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.delete(`${import.meta.env.VITE_API_URL}/approvals/users/${userId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/approvals/users/${userId}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             toast.success('User deleted successfully');

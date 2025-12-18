@@ -24,13 +24,13 @@ const MyTimetable = () => {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
             // Fetch events
-            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/events`, {
+            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/events`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setEvents(eventsRes.data);
 
             // Fetch student class and timetable
-            const studentProfile = await axios.get(`${import.meta.env.VITE_API_URL}/students/${userInfo._id}`, {
+            const studentProfile = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${userInfo._id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
 

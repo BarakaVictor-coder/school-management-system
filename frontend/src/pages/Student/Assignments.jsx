@@ -28,7 +28,7 @@ const Assignments = () => {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             };
             // In a real app, filter by student's class
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/assignments`, config);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/assignments`, config);
             setAssignments(data);
         } catch (error) {
             console.error(error);
@@ -40,7 +40,7 @@ const Assignments = () => {
             const config = {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             };
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/submissions?studentId=${userInfo._id}`, config);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/submissions?studentId=${userInfo._id}`, config);
             setSubmissions(data);
         } catch (error) {
             console.error(error);
@@ -56,7 +56,7 @@ const Assignments = () => {
             const config = {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
             };
-            await axios.post(`${import.meta.env.VITE_API_URL}/submissions`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/submissions`, {
                 assignment: selectedAssignment._id,
                 content: submissionContent
             }, config);

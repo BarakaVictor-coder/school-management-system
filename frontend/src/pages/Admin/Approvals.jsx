@@ -36,7 +36,7 @@ const Approvals = () => {
     const fetchPendingUsers = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/approvals/pending`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/approvals/pending`, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
@@ -64,7 +64,7 @@ const Approvals = () => {
     const fetchStudents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/approvals/users`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/approvals/users`, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }

@@ -23,7 +23,7 @@ const ViewReports = () => {
     const fetchChildren = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children`, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
@@ -42,7 +42,7 @@ const ViewReports = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { data } = await axios.get(
-                `${import.meta.env.VITE_API_URL}/reports/student/${studentId}`,
+                `${import.meta.env.VITE_API_URL}/api/reports/student/${studentId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`
@@ -61,7 +61,7 @@ const ViewReports = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { data } = await axios.get(
-                `${import.meta.env.VITE_API_URL}/reports/${reportId}`,
+                `${import.meta.env.VITE_API_URL}/api/reports/${reportId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`

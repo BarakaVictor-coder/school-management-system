@@ -33,7 +33,7 @@ const Assignments = () => {
 
     const fetchAssignments = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/assignments?teacherId=${userInfo._id}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/assignments?teacherId=${userInfo._id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setAssignments(data);

@@ -14,7 +14,7 @@ const FeePayment = () => {
     const fetchFees = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/fees`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}api/fees`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setFees(data);

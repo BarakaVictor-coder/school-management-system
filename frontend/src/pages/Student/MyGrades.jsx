@@ -19,7 +19,7 @@ const MyGrades = () => {
 
     const fetchGrades = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/grades/student/${userInfo._id}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/grades/student/${userInfo._id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setGrades(data);

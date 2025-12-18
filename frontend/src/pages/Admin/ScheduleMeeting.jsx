@@ -24,7 +24,7 @@ const ScheduleMeeting = () => {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
 
             await axios.post(
-                `${import.meta.env.VITE_API_URL}/calendar/events`,
+                `${import.meta.env.VITE_API_URL}/api/calendar/events`,
                 {
                     title,
                     description,

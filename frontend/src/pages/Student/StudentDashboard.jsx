@@ -53,14 +53,14 @@ const StudentDashboard = () => {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
 
             const [attendanceRes, gradesRes, subjectsRes, assignmentsRes] = await Promise.all([
-                axios.get(`${import.meta.env.VITE_API_URL}/attendance/student/${userInfo._id}/stats`, config).catch(() => ({ data: { percentage: 0, present: 0, absent: 0, late: 0, total: 0 } })),
-                axios.get(`${import.meta.env.VITE_API_URL}/grades/student/${userInfo._id}/stats`, config).catch(() => ({ data: { averageMarks: 0 } })),
-                axios.get(`${import.meta.env.VITE_API_URL}/subjects`, config).catch(() => ({ data: [] })),
-                axios.get(`${import.meta.env.VITE_API_URL}/assignments`, config).catch(() => ({ data: [] }))
+                axios.get(`${import.meta.env.VITE_API_URL}/api/attendance/student/${userInfo._id}/stats`, config).catch(() => ({ data: { percentage: 0, present: 0, absent: 0, late: 0, total: 0 } })),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/grades/student/${userInfo._id}/stats`, config).catch(() => ({ data: { averageMarks: 0 } })),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`, config).catch(() => ({ data: [] })),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/assignments`, config).catch(() => ({ data: [] }))
             ]);
 
             // Get student's grades by subject
-            const studentGrades = await axios.get(`${import.meta.env.VITE_API_URL}/grades/student/${userInfo._id}`, config).catch(() => ({ data: [] }));
+            const studentGrades = await axios.get(`${import.meta.env.VITE_API_URL}/api/grades/student/${userInfo._id}`, config).catch(() => ({ data: [] }));
 
             // Group grades by subject
             const gradesBySubject = {};

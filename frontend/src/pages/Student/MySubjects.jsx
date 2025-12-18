@@ -18,14 +18,14 @@ const MySubjects = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             // Get student's class first
-            const { data: studentData } = await axios.get(`${import.meta.env.VITE_API_URL}/students`, {
+            const { data: studentData } = await axios.get(`${import.meta.env.VITE_API_URL}/api/students`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             const student = studentData.find(s => s._id === userInfo._id);
 
             if (student?.studentClass) {
                 // Get subjects for student's class
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/subjects?classId=${student.studentClass._id}`, {
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects?classId=${student.studentClass._id}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 setSubjects(data);

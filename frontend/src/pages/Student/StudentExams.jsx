@@ -20,7 +20,7 @@ const StudentExams = () => {
     const fetchExams = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/exams`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/exams`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setExams(data);

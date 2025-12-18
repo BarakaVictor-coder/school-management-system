@@ -22,20 +22,20 @@ const StudyMaterials = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             // First fetch student profile to get classId
-            const studentProfile = await axios.get(`${import.meta.env.VITE_API_URL}/students/${userInfo._id}`, {
+            const studentProfile = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${userInfo._id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             const classId = studentProfile.data.studentClass?._id;
 
             if (classId) {
                 // Fetch materials for this class
-                const materialsRes = await axios.get(`${import.meta.env.VITE_API_URL}/materials?classId=${classId}`, {
+                const materialsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/materials?classId=${classId}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 setMaterials(materialsRes.data);
 
                 // Fetch subjects for this class to populate filters
-                const enrolledSubjects = await axios.get(`${import.meta.env.VITE_API_URL}/subjects?classId=${classId}`, {
+                const enrolledSubjects = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects?classId=${classId}`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 setSubjects(enrolledSubjects.data);
