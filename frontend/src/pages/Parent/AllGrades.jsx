@@ -18,13 +18,13 @@ const AllGrades = () => {
             const headers = { Authorization: `Bearer ${userInfo.token}` };
 
             // Fetch children
-            const { data: childrenData } = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children`, { headers });
+            const { data: childrenData } = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children`, { headers });
             setChildren(childrenData);
 
             // Fetch grades for each child
             const grades = {};
             for (const child of childrenData) {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${child._id}/grades`, { headers });
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${child._id}/grades`, { headers });
                 grades[child._id] = data;
             }
             setGradesData(grades);

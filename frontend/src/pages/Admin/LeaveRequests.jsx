@@ -10,7 +10,7 @@ const LeaveRequests = () => {
     const fetchPendingLeaves = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/leaves/pending`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/leaves/pending`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setLeaves(data);
@@ -29,7 +29,7 @@ const LeaveRequests = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             await axios.put(
-                `${import.meta.env.VITE_API_URL}/leaves/${id}`,
+                `${import.meta.env.VITE_API_URL}/api/leaves/${id}`,
                 { status },
                 { headers: { Authorization: `Bearer ${userInfo.token}` } }
             );

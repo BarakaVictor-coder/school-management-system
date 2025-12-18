@@ -53,7 +53,7 @@ const SchoolCalendar = () => {
     const fetchEvents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/events`, {
+            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/events`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setEvents(eventsRes.data);
@@ -65,7 +65,7 @@ const SchoolCalendar = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -77,8 +77,8 @@ const SchoolCalendar = () => {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
             const [tRes, sRes] = await Promise.all([
-                axios.get(`${import.meta.env.VITE_API_URL}/teachers`, config),
-                axios.get(`${import.meta.env.VITE_API_URL}/subjects`, config)
+                axios.get(`${import.meta.env.VITE_API_URL}/api/teachers`, config),
+                axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`, config)
             ]);
             setTeachers(tRes.data);
             setSubjects(sRes.data);
@@ -88,7 +88,7 @@ const SchoolCalendar = () => {
     const fetchTimetable = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/timetable/${selectedClass}`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/timetable/${selectedClass}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setTimetable(data || { days: [] });
@@ -104,7 +104,7 @@ const SchoolCalendar = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             await axios.post(
-                `${import.meta.env.VITE_API_URL}/calendar/events`,
+                `${import.meta.env.VITE_API_URL}/api/calendar/events`,
                 { title, description, date, type, isOnline: isOnlineEvent, meetingLink },
                 { headers: { Authorization: `Bearer ${userInfo.token}` } }
             );
@@ -126,7 +126,7 @@ const SchoolCalendar = () => {
         if (!window.confirm('Delete this event?')) return;
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.delete(`${import.meta.env.VITE_API_URL}/calendar/events/${id}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/calendar/events/${id}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             fetchEvents();
@@ -165,7 +165,7 @@ const SchoolCalendar = () => {
             }));
 
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/calendar/timetable`,
+                `${import.meta.env.VITE_API_URL}/api/calendar/timetable`,
                 { classId: selectedClass, days: payloadDays },
                 { headers: { Authorization: `Bearer ${userInfo.token}` } }
             );

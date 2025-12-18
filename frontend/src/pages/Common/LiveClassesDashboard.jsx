@@ -25,7 +25,7 @@ const LiveClassesDashboard = () => {
             const config = { headers: { Authorization: `Bearer ${userInfo.token}` } };
 
             // 1. Fetch Meetings (Common for all)
-            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/events`, config);
+            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/events`, config);
             const onlineMeetings = eventsRes.data.filter(
                 e => e.type === 'Meeting' && e.isOnline && new Date(e.date) >= new Date(new Date().setHours(0, 0, 0, 0))
             );
@@ -33,17 +33,17 @@ const LiveClassesDashboard = () => {
 
             // 2. Fetch Role-Specific Data
             if (userInfo.role === 'Teacher') {
-                const subjectsRes = await axios.get(`${import.meta.env.VITE_API_URL}/subjects?teacherId=${userInfo._id}`, config);
+                const subjectsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects?teacherId=${userInfo._id}`, config);
                 setSubjects(subjectsRes.data);
             } else if (userInfo.role === 'Student') {
                 // Fetch student's profile to get class
-                const profileRes = await axios.get(`${import.meta.env.VITE_API_URL}/students/${userInfo._id}`, config);
+                const profileRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/students/${userInfo._id}`, config);
                 const classObj = profileRes.data.studentClass;
                 const classId = classObj?._id || classObj;
 
                 if (classId) {
                     // Fetch timetable to find which subjects have online classes
-                    const timetableRes = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/timetable/${classId}`, config);
+                    const timetableRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/timetable/${classId}`, config);
                     const timetableData = timetableRes.data;
 
                     // Get all unique subject IDs that have online periods
@@ -57,7 +57,7 @@ const LiveClassesDashboard = () => {
                     });
 
                     // Fetch all subjects for the class
-                    const subjectsRes = await axios.get(`${import.meta.env.VITE_API_URL}/subjects?classId=${classId}`, config);
+                    const subjectsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects?classId=${classId}`, config);
 
                     // Filter to show only subjects that have online classes configured
                     const onlineSubjects = subjectsRes.data.filter(subject =>

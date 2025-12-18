@@ -18,13 +18,13 @@ const AllAttendance = () => {
             const headers = { Authorization: `Bearer ${userInfo.token}` };
 
             // Fetch children
-            const { data: childrenData } = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children`, { headers });
+            const { data: childrenData } = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children`, { headers });
             setChildren(childrenData);
 
             // Fetch attendance for each child
             const attendance = {};
             for (const child of childrenData) {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children/${child._id}/attendance`, { headers });
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children/${child._id}/attendance`, { headers });
                 attendance[child._id] = data;
             }
             setAttendanceData(attendance);

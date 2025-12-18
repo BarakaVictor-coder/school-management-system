@@ -14,7 +14,7 @@ const FeePayment = () => {
     const fetchFees = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}api/fees`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/fees`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setFees(data);
@@ -26,7 +26,7 @@ const FeePayment = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/fees/create-checkout-session`,
+                `${import.meta.env.VITE_API_URL}/api/fees/create-checkout-session`,
                 { feeId },
                 {
                     headers: { Authorization: `Bearer ${userInfo.token}` }

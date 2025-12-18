@@ -23,7 +23,7 @@ const LeaveApplication = () => {
     const fetchLeaves = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/leaves/my`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/leaves/my`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setLeaves(data);
@@ -38,7 +38,7 @@ const LeaveApplication = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             await axios.post(
-                `${import.meta.env.VITE_API_URL}/leaves`,
+                `${import.meta.env.VITE_API_URL}/api/leaves`,
                 { leaveType, startDate, endDate, reason },
                 { headers: { Authorization: `Bearer ${userInfo.token}` } }
             );

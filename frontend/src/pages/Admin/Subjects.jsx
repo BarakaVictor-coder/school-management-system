@@ -23,7 +23,7 @@ const Subjects = () => {
     const fetchSubjects = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/subjects`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/subjects`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setSubjects(data);
@@ -35,7 +35,7 @@ const Subjects = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -47,7 +47,7 @@ const Subjects = () => {
     const fetchTeachers = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/teachers`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/teachers`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setTeachers(data);
@@ -67,7 +67,7 @@ const Subjects = () => {
         setLoading(true);
 
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/subjects`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/subjects`, {
                 name,
                 code: code.toUpperCase(),
                 class: selectedClass,
@@ -95,7 +95,7 @@ const Subjects = () => {
     const deleteSubject = async (id) => {
         if (window.confirm('Are you sure you want to delete this subject?')) {
             try {
-                await axios.delete(`${import.meta.env.VITE_API_URL}/subjects/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_URL}/api/subjects/${id}`);
                 toast.success('Subject deleted successfully');
                 fetchSubjects();
             } catch (error) {

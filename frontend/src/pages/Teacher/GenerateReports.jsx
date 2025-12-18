@@ -40,7 +40,7 @@ const GenerateReports = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -56,7 +56,7 @@ const GenerateReports = () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/reports/generate`,
+                `${import.meta.env.VITE_API_URL}/api/reports/generate`,
                 {
                     studentId: selectedStudent,
                     type,
@@ -76,7 +76,7 @@ const GenerateReports = () => {
 
             // Auto-publish the report
             await axios.put(
-                `${import.meta.env.VITE_API_URL}/reports/${data._id}/publish`,
+                `${import.meta.env.VITE_API_URL}/api/reports/${data._id}/api/publish`,
                 {},
                 {
                     headers: {

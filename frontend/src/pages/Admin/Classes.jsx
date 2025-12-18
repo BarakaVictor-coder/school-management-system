@@ -13,7 +13,7 @@ const Classes = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -38,7 +38,7 @@ const Classes = () => {
                     Authorization: `Bearer ${userInfo.token}`
                 },
             };
-            await axios.post(`${import.meta.env.VITE_API_URL}/classes`, { name, section }, config);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/classes`, { name, section }, config);
             setLoading(false);
             setName('');
             setSection('');
@@ -58,7 +58,7 @@ const Classes = () => {
 
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.delete(`${import.meta.env.VITE_API_URL}/classes/${classId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/classes/${classId}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             toast.success('Class deleted successfully');

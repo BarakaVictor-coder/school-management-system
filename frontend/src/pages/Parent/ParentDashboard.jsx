@@ -56,12 +56,12 @@ const ParentDashboard = () => {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
             // 1. Fetch Children
-            const childrenRes = await axios.get(`${import.meta.env.VITE_API_URL}/parents/children`, {
+            const childrenRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/parents/children`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
 
             // 2. Fetch Events (Meetings)
-            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/calendar/events`, {
+            const eventsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/calendar/events`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             const upcomingMeetings = eventsRes.data.filter(e =>
@@ -75,7 +75,7 @@ const ParentDashboard = () => {
             const childrenWithStats = await Promise.all(
                 childrenRes.data.map(async (child) => {
                     const stats = await axios.get(
-                        `${import.meta.env.VITE_API_URL}/parents/children/${child._id}/stats`,
+                        `${import.meta.env.VITE_API_URL}/api/parents/children/${child._id}/stats`,
                         { headers: { Authorization: `Bearer ${userInfo.token}` } }
                     );
                     return { ...child, stats: stats.data };

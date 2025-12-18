@@ -21,7 +21,7 @@ const Students = () => {
     const fetchStudents = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/students`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}api/students`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setStudents(data);
@@ -33,7 +33,7 @@ const Students = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/classes`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/classes`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setClasses(data);
@@ -54,7 +54,7 @@ const Students = () => {
             const config = {
                 headers: { 'Content-Type': 'application/json' },
             };
-            await axios.post(`${import.meta.env.VITE_API_URL}/students`, {
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/students`, {
                 name, email, password, studentClass: selectedClass, rollNumber
             }, config);
 
@@ -75,7 +75,7 @@ const Students = () => {
 
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.delete(`${import.meta.env.VITE_API_URL}/students/${studentId}`, {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/students/${studentId}`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             toast.success('Student deleted successfully');
