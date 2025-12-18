@@ -51,9 +51,15 @@ const Students = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const config = {
-                headers: { 'Content-Type': 'application/json' },
-            };
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${userInfo.token}`,
+  },
+};
+
             await axios.post(`${import.meta.env.VITE_API_URL}/api/students`, {
                 name, email, password, studentClass: selectedClass, rollNumber
             }, config);
