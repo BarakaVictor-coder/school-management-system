@@ -50,7 +50,7 @@ const Approvals = () => {
     const fetchClasses = async () => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            const { data } = await axios.get('http://localhost:5000/api/classes', {
+            const { data } = await axios.get('https://school-management-system-nctp.onrender.com/api/classes', {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
@@ -91,7 +91,7 @@ const Approvals = () => {
         setLoading(true);
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.put(`http://localhost:5000/api/approvals/${selectedUser._id}/approve`, {
+            await axios.put(`https://school-management-system-nctp.onrender.com/api/approvals/${selectedUser._id}/approve`, {
                 role,
                 studentClass: role === 'Student' ? selectedClass : null,
                 rollNumber: role === 'Student' ? rollNumber : null,
@@ -118,7 +118,7 @@ const Approvals = () => {
 
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            await axios.put(`http://localhost:5000/api/approvals/${userId}/reject`, {}, {
+            await axios.put(`https://school-management-system-nctp.onrender.com/api/approvals/${userId}/reject`, {}, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }

@@ -29,7 +29,7 @@ const MyAttendance = () => {
 
     const fetchStats = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/attendance/student/${userInfo._id}/stats`, {
+            const { data } = await axios.get(`https://school-management-system-nctp.onrender.com/api/attendance/student/${userInfo._id}/stats`, {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             });
             setStats(data);
